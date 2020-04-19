@@ -1,0 +1,37 @@
+---
+title: "Leaflet Assignment"
+author: "Arunkumar"
+date: "19/04/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## My First Leaflet Map
+A simple map pointing to the Bannerghatta Biological Park in Bengaluru.
+
+Creating a leaflet map object.
+
+```{r}
+library(leaflet)
+map <- leaflet() %>% addTiles()
+```
+
+Creating marker with a picture of EGL and a link to its homepage.
+```{r}
+bnpIcon <- makeIcon(
+   iconUrl = "http://bannerghattabiologicalpark.org/assets/images/logo.png",
+   iconWidth = 30*408/255, iconHeight = 30,
+   iconAnchorX = 30*408/255/2, iconAnchorY = 30/2
+)
+```
+
+Adding marker to the map and display the map.
+```{r}
+bnpPopup <- c("<a href= 'http://bannerghattabiologicalpark.org/about_park.html' >Bannerghatta Biological Park<br><img src='http://bannerghattabiologicalpark.org/assets/images/logo.png' width='105' height='61'  alt='BBP' title='Bannerghatta Park'></a>")
+map %>%
+   addTiles() %>%
+   addMarkers(lat=12.796785, lng=77.567080, popup = bnpPopup)
+```
